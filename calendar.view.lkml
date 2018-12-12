@@ -9,18 +9,18 @@ view: calendar {
 
   dimension: cumul_bizdays_m {
     type: number
-    sql: ${TABLE}.Cumul_BizDays_m ;;
+    sql: ${TABLE}.Cumul_Biz_Days_m ;;
   }
 
   dimension: cumul_bizdays_q {
     type: number
-    sql: ${TABLE}.Cumul_BizDays_q ;;
+    sql: ${TABLE}.Cumul_Biz_Days_q ;;
   }
 
   dimension: cumul_bizdays_left_q {
     label: "Business Days Remaining"
     type: number
-    sql: ${TABLE}.Cumul_BizDays_Left_q ;;
+    sql: ${TABLE}.CUMUL_BIZ_DAYS_LEFT_Q ;;
   }
 
   dimension: cumul_caldays_q {
