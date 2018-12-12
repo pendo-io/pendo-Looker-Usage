@@ -20,7 +20,7 @@ view: calendar {
   dimension: cumul_bizdays_left_q {
     label: "Business Days Remaining"
     type: number
-    sql: ${TABLE}.cumul_bizdays_left_q ;;
+    sql: ${TABLE}.Cumul_BizDays_Left_q ;;
   }
 
   dimension: cumul_caldays_q {
