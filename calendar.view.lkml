@@ -23,11 +23,6 @@ view: calendar {
     sql: ${TABLE}.cumul_bizdays_left_q ;;
   }
 
-  dimension: cumul_bizdays_y {
-    type: number
-    sql: ${TABLE}.Cumul_BizDays_y ;;
-  }
-
   dimension: cumul_caldays_q {
     label: "Calendar Days Elapsed in the Quarter"
     type: number
@@ -77,44 +72,14 @@ view: calendar {
     sql: ${TABLE}.Month_In_Qtr_f ;;
   }
 
-  dimension: month_num_c {
-    type: number
-    sql: ${TABLE}.Month_Num_c ;;
-  }
-
   dimension: month_num_f {
     type: number
     sql: ${TABLE}.Month_Num_f ;;
   }
 
-  dimension: pct_biz_days_m {
-    type: number
-    sql: ${TABLE}.Pct_BizDays_m ;;
-  }
-
-  dimension: pct_biz_days_q {
-    type: number
-    sql: ${TABLE}.Pct_BizDays_q ;;
-  }
-
-  dimension: pct_biz_days_y {
-    type: number
-    sql: ${TABLE}.Pct_BizDays_y ;;
-  }
-
-  dimension: qtr_c {
-    type: string
-    sql: ${TABLE}.Qtr_c ;;
-  }
-
   dimension: qtr_f {
     type: string
     sql: ${TABLE}.Qtr_f ;;
-  }
-
-  dimension: qtr_num_c {
-    type: number
-    sql: ${TABLE}.Qtr_Num_c ;;
   }
 
   dimension: qtr_num_f {
@@ -125,11 +90,6 @@ view: calendar {
   dimension: week {
     type: date
     sql: ${TABLE}.Week ;;
-  }
-
-  dimension: year_c {
-    type: number
-    sql: ${TABLE}.Year_c ;;
   }
 
   dimension: year_f {
