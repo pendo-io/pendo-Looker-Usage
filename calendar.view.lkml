@@ -29,10 +29,10 @@ view: calendar {
     sql: ${TABLE}.Cumul_CalDays_q ;;
   }
 
-  dimension: cumul_caldays_left_q {
+  dimension: cumul_caldays_q_left {
     label: "Calendar Days Left in the Quarter"
     type: number
-    sql: ${TABLE}.Cumul_CalDays_Left_q ;;
+    sql: ${TABLE}.Cumul_CalDays_q_Left ;;
   }
 
   dimension: date {
