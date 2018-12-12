@@ -14,6 +14,17 @@ persist_with: pendo_usage_default_datagroup
 
 explore: events {
   label: "Events"
+
+  join: calendar {
+    view_label: "Calendar"
+    relationship: many_to_one
+    sql_on: ${events.day_date}=${calendar.date_group_date} ;;
+  }
+
+}
+
+explore: calendar {
+  label: "Calendar"
 }
 
 explore: accounts {
