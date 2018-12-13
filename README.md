@@ -67,7 +67,7 @@ For this Block, we created the following in Snowflake:
 - Warehouse = `COMPUTE_WH`
 - Schema = `PENDO`
 - Database = `PENDO`
-- Tables = `VISITORS` `ACCOUNTS` `ALLFEATURES` `ALLPAGES` `FEATUREEVENTS` `PAGEEVENTS` `MONTHLYACTIVEUSERCOUNT` `MONTHLYACTIVEACCOUNTCOUNT`
+- Tables = `VISITORS` `ACCOUNTS` `ALLFEATURES` `ALLPAGES` `FEATUREEVENTS` `PAGEEVENTS` `EVENTS`
 
 The table column names are defined by the field names included in the `select` statement in the pre-defined API calls.  Please leave them as they are to ensure success with this Block.
 
