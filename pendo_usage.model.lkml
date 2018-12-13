@@ -14,17 +14,6 @@ persist_with: pendo_usage_default_datagroup
 
 explore: events {
   label: "Events"
-
-  join: calendar {
-    view_label: "Calendar"
-    relationship: many_to_one
-    sql_on: ${events.day_date}=${calendar.date_group_date} ;;
-  }
-
-}
-
-explore: calendar {
-  label: "Calendar"
 }
 
 explore: accounts {
@@ -60,14 +49,6 @@ explore: featureevents {
     sql_on: ${featureevents.feature_id} = ${allfeatures.id} ;;
     relationship: many_to_one
   }
-}
-
-explore: monthlyactiveaccountcount {
-  label: "Monthly Active Account Count"
-}
-
-explore: monthlyactiveusercount {
-  label: "Monthly Active Visitor Count"
 }
 
 explore: pageevents {
