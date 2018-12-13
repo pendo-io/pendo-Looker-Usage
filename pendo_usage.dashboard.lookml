@@ -2,60 +2,6 @@
   title: Pendo Usage
   layout: newspaper
   elements:
-  - title: Monthly Active Accounts
-    name: Monthly Active Accounts
-    model: pendo_usage
-    explore: monthlyactiveaccountcount
-    type: single_value
-    fields:
-    - monthlyactiveaccountcount.unique_accounts
-    - monthlyactiveaccountcount.date_month
-    sorts:
-    - monthlyactiveaccountcount.unique_accounts
-    limit: 500
-    query_timezone: America/Los_Angeles
-    custom_color_enabled: false
-    custom_color: forestgreen
-    show_single_value_title: true
-    single_value_title: Monthly Active Accounts
-    show_comparison: false
-    comparison_type: value
-    comparison_reverse_colors: false
-    show_comparison_label: true
-    series_types: {}
-    hidden_fields:
-    - monthlyactiveaccountcount.date
-    row: 0
-    col: 13
-    width: 11
-    height: 4
-  - title: Monthly Active Users (Visitors)
-    name: Monthly Active Users (Visitors)
-    model: pendo_usage
-    explore: monthlyactiveusercount
-    type: single_value
-    fields:
-    - monthlyactiveusercount.unique_visitors
-    - monthlyactiveusercount.date_month
-    sorts:
-    - monthlyactiveusercount.unique_visitors
-    limit: 500
-    query_timezone: America/Los_Angeles
-    custom_color_enabled: false
-    custom_color: forestgreen
-    show_single_value_title: true
-    single_value_title: Monthly Active Users (Visitors)
-    show_comparison: false
-    comparison_type: value
-    comparison_reverse_colors: false
-    show_comparison_label: true
-    hidden_fields:
-    - monthlyactiveusercount.date
-    series_types: {}
-    row: 0
-    col: 0
-    width: 12
-    height: 4
   - title: Top 10 Features
     name: Top 10 Features
     model: pendo_usage
@@ -99,7 +45,7 @@
     totals_color: "#808080"
     listen:
       Customer Success Manager: accounts.customersuccessmanager
-    row: 35
+    row: 37
     col: 0
     width: 24
     height: 8
@@ -146,7 +92,7 @@
     totals_color: "#808080"
     listen:
       Customer Success Manager: accounts.customersuccessmanager
-    row: 43
+    row: 45
     col: 0
     width: 12
     height: 7
@@ -193,9 +139,9 @@
     totals_color: "#808080"
     listen:
       Customer Success Manager: accounts.customersuccessmanager
-    row: 43
-    col: 13
-    width: 11
+    row: 45
+    col: 12
+    width: 12
     height: 7
   - title: Web Browser and Browser Versions In Use
     name: Web Browser and Browser Versions In Use
@@ -227,72 +173,10 @@
     series_types: {}
     listen:
       Customer Success Manager: accounts.customersuccessmanager
-    row: 57
+    row: 59
     col: 16
     width: 8
     height: 6
-  - title: Bounced MAUs - Last 13 Months
-    name: Bounced MAUs - Last 13 Months
-    model: pendo_usage
-    explore: events
-    type: looker_column
-    fields:
-    - events.day_month
-    - events.active_user
-    fill_fields:
-    - events.day_month
-    filters:
-      events.day_month: 13 months
-    sorts:
-    - events.day_month desc
-    limit: 500
-    query_timezone: America/Los_Angeles
-    stacking: ''
-    show_value_labels: true
-    label_density: 25
-    legend_position: center
-    x_axis_gridlines: false
-    y_axis_gridlines: true
-    show_view_names: false
-    point_style: none
-    series_types: {}
-    limit_displayed_rows: false
-    y_axes:
-    - label: Users
-      orientation: left
-      series:
-      - id: events.active_user
-        name: Active User
-        axisId: events.active_user
-      showLabels: true
-      showValues: true
-      unpinAxis: false
-      tickDensity: default
-      tickDensityCustom: 5
-      type: linear
-    y_axis_combined: true
-    show_y_axis_labels: true
-    show_y_axis_ticks: true
-    y_axis_tick_density: default
-    y_axis_tick_density_custom: 5
-    show_x_axis_label: true
-    x_axis_label: Month
-    show_x_axis_ticks: true
-    x_axis_scale: auto
-    y_axis_scale_mode: linear
-    x_axis_reversed: false
-    y_axis_reversed: false
-    plot_size_by_field: false
-    x_axis_label_rotation: 270
-    ordering: none
-    show_null_labels: false
-    show_totals_labels: false
-    show_silhouette: false
-    totals_color: "#808080"
-    row: 12
-    col: 0
-    width: 8
-    height: 8
   - title: Average Time on Site per MAU - Last 13 Months
     name: Average Time on Site per MAU - Last 13 Months
     model: pendo_usage
@@ -363,7 +247,7 @@
     hidden_fields:
     - events.number_of_minutes
     - events.active_user
-    row: 12
+    row: 14
     col: 8
     width: 8
     height: 8
@@ -438,23 +322,362 @@
     - events.active_account
     - events.active_user
     listen: {}
-    row: 12
+    row: 14
     col: 16
     width: 8
     height: 8
+  - title: Account Industry
+    name: Account Industry
+    model: pendo_usage
+    explore: accounts
+    type: looker_column
+    fields:
+    - accounts.industry
+    - accounts.count
+    filters:
+      accounts.industry: "-NULL"
+    sorts:
+    - accounts.count desc
+    limit: 10
+    query_timezone: America/Los_Angeles
+    stacking: ''
+    show_value_labels: false
+    label_density: 25
+    legend_position: center
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: false
+    point_style: none
+    series_colors:
+      accounts.count: "#90c8ae"
+    limit_displayed_rows: false
+    y_axes:
+    - label: ''
+      orientation: left
+      series:
+      - id: accounts.count
+        name: Account Count
+        axisId: accounts.count
+      showLabels: false
+      showValues: true
+      unpinAxis: false
+      tickDensity: default
+      tickDensityCustom: 5
+      type: linear
+    y_axis_combined: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    x_axis_label: ''
+    show_x_axis_ticks: true
+    x_axis_scale: auto
+    y_axis_scale_mode: linear
+    x_axis_reversed: false
+    y_axis_reversed: false
+    plot_size_by_field: false
+    ordering: none
+    show_null_labels: false
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    listen:
+      Customer Success Manager: accounts.customersuccessmanager
+    row: 52
+    col: 0
+    width: 24
+    height: 7
+  - title: Visitor Operating Systems Used
+    name: Visitor Operating Systems Used
+    model: pendo_usage
+    explore: visitors
+    type: looker_column
+    fields:
+    - visitors.lastoperatingsystem
+    - visitors.count
+    sorts:
+    - visitors.count desc
+    limit: 500
+    query_timezone: America/Los_Angeles
+    stacking: ''
+    show_value_labels: false
+    label_density: 25
+    legend_position: center
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: true
+    point_style: none
+    series_colors:
+      visitors.count: "#90c8ae"
+    limit_displayed_rows: false
+    y_axis_combined: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    show_x_axis_ticks: true
+    x_axis_scale: auto
+    y_axis_scale_mode: linear
+    x_axis_reversed: false
+    y_axis_reversed: false
+    plot_size_by_field: false
+    ordering: none
+    show_null_labels: false
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    listen:
+      Customer Success Manager: accounts.customersuccessmanager
+    row: 59
+    col: 0
+    width: 8
+    height: 6
+  - title: Visitor Web Browser Used
+    name: Visitor Web Browser Used
+    model: pendo_usage
+    explore: visitors
+    type: looker_column
+    fields:
+    - visitors.count
+    - visitors.lastbrowsername
+    sorts:
+    - visitors.count desc
+    limit: 500
+    query_timezone: America/Los_Angeles
+    stacking: ''
+    show_value_labels: false
+    label_density: 25
+    legend_position: center
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: true
+    point_style: none
+    series_colors:
+      visitors.count: "#90c8ae"
+    limit_displayed_rows: false
+    y_axis_combined: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    show_x_axis_ticks: true
+    x_axis_scale: auto
+    y_axis_scale_mode: linear
+    x_axis_reversed: false
+    y_axis_reversed: false
+    plot_size_by_field: false
+    ordering: none
+    show_null_labels: false
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    listen:
+      Customer Success Manager: accounts.customersuccessmanager
+    row: 59
+    col: 8
+    width: 8
+    height: 6
+  - title: Top 10 Pages
+    name: Top 10 Pages
+    model: pendo_usage
+    explore: pageevents
+    type: looker_bar
+    fields:
+    - allpages.name
+    - pageevents.count
+    filters:
+      allpages.name: "-Dashboard Home"
+    sorts:
+    - pageevents.count desc
+    limit: 10
+    query_timezone: America/Los_Angeles
+    stacking: ''
+    show_value_labels: false
+    label_density: 25
+    legend_position: center
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: false
+    point_style: none
+    series_colors:
+      pageevents.count: "#d0d0d0"
+    series_labels:
+      pageevents.count: Page Event Count - Excludes Dashboard Home Page
+    series_types: {}
+    limit_displayed_rows: false
+    y_axis_combined: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    show_x_axis_ticks: true
+    x_axis_scale: auto
+    y_axis_scale_mode: linear
+    x_axis_reversed: false
+    y_axis_reversed: false
+    plot_size_by_field: false
+    ordering: none
+    show_null_labels: false
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    listen:
+      Customer Success Manager: accounts.customersuccessmanager
+    row: 22
+    col: 0
+    width: 24
+    height: 8
+  - title: Most Active Visitors by Page Visits
+    name: Most Active Visitors by Page Visits
+    model: pendo_usage
+    explore: pageevents
+    type: looker_bar
+    fields:
+    - pageevents.visitor_id
+    - pageevents.count
+    sorts:
+    - pageevents.count desc
+    limit: 10
+    query_timezone: America/Los_Angeles
+    stacking: ''
+    show_value_labels: false
+    label_density: 25
+    legend_position: center
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: false
+    point_style: none
+    series_colors:
+      pageevents.count: "#d0d0d0"
+    series_types: {}
+    limit_displayed_rows: false
+    y_axis_combined: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    show_x_axis_ticks: true
+    x_axis_scale: auto
+    y_axis_scale_mode: linear
+    x_axis_reversed: false
+    y_axis_reversed: false
+    plot_size_by_field: false
+    ordering: none
+    show_null_labels: false
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    listen:
+      Customer Success Manager: accounts.customersuccessmanager
+    row: 30
+    col: 0
+    width: 12
+    height: 7
+  - title: Most Active Account by Page Visits
+    name: Most Active Account by Page Visits
+    model: pendo_usage
+    explore: pageevents
+    type: looker_bar
+    fields:
+    - pageevents.account_id
+    - pageevents.count
+    sorts:
+    - pageevents.count desc
+    limit: 10
+    query_timezone: America/Los_Angeles
+    stacking: ''
+    show_value_labels: false
+    label_density: 25
+    legend_position: center
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: false
+    point_style: none
+    series_colors:
+      pageevents.count: "#d0d0d0"
+    series_types: {}
+    limit_displayed_rows: false
+    y_axis_combined: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    show_x_axis_ticks: true
+    x_axis_scale: auto
+    y_axis_scale_mode: linear
+    x_axis_reversed: false
+    y_axis_reversed: false
+    plot_size_by_field: false
+    ordering: none
+    show_null_labels: false
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    listen:
+      Customer Success Manager: accounts.customersuccessmanager
+    row: 30
+    col: 12
+    width: 12
+    height: 7
+  - title: Monthly Active Users (Visitors)
+    name: Monthly Active Users (Visitors)
+    model: pendo_usage
+    explore: events
+    type: single_value
+    fields:
+    - events.day_month
+    - events.active_user
+    fill_fields:
+    - events.day_month
+    filters:
+      events.day_month: 1 months
+    sorts:
+    - events.day_month desc
+    limit: 500
+    query_timezone: America/Los_Angeles
+    series_types: {}
+    row: 0
+    col: 0
+    width: 12
+    height: 6
+  - title: Monthly Active Accounts
+    name: Monthly Active Accounts
+    model: pendo_usage
+    explore: events
+    type: single_value
+    fields:
+    - events.day_month
+    - events.active_account
+    fill_fields:
+    - events.day_month
+    filters:
+      events.day_month: 1 months
+    sorts:
+    - events.day_month desc
+    limit: 500
+    query_timezone: America/Los_Angeles
+    series_types: {}
+    row: 0
+    col: 12
+    width: 12
+    height: 6
   - title: New MAUs - Last 13 Months
     name: New MAUs - Last 13 Months
     model: pendo_usage
     explore: events
     type: looker_column
     fields:
-    - calendar.month
     - events.new_mau
+    - events.day_month
     filters:
       events.new_mau: NOT NULL
-      calendar.month: 13 months
-    sorts:
-    - calendar.month desc
+      events.day_month: 13 months
     limit: 500
     query_timezone: America/Los_Angeles
     stacking: ''
@@ -501,7 +724,7 @@
     show_silhouette: false
     totals_color: "#808080"
     listen: {}
-    row: 4
+    row: 6
     col: 0
     width: 8
     height: 8
@@ -511,13 +734,11 @@
     explore: events
     type: looker_column
     fields:
-    - calendar.month
     - events.churned_mau
+    - events.day_month
     filters:
       events.churned_mau: NOT NULL
-      calendar.month: 13 months
-    sorts:
-    - calendar.month desc
+      events.day_month: 13 months
     limit: 500
     query_timezone: America/Los_Angeles
     stacking: ''
@@ -564,7 +785,7 @@
     show_silhouette: false
     totals_color: "#808080"
     listen: {}
-    row: 4
+    row: 6
     col: 8
     width: 8
     height: 8
@@ -574,15 +795,13 @@
     explore: events
     type: looker_column
     fields:
-    - calendar.date_group_month
     - events.churned_mau
     - events.new_mau
+    - events.day_month
     fill_fields:
-    - calendar.date_group_month
+    - events.day_month
     filters:
-      calendar.date_group_month: 13 months
-    sorts:
-    - calendar.date_group_month desc
+      events.day_month: 13 months
     limit: 500
     dynamic_fields:
     - table_calculation: churn_offset
@@ -653,43 +872,42 @@
     - events.new_mau
     - churn_offset
     listen: {}
-    row: 4
+    row: 6
     col: 16
     width: 8
     height: 8
-  - title: Account Industry
-    name: Account Industry
+  - title: Bounced MAUs - Last 13 Months
+    name: Bounced MAUs - Last 13 Months
     model: pendo_usage
-    explore: accounts
+    explore: events
     type: looker_column
     fields:
-    - accounts.industry
-    - accounts.count
+    - events.active_user
+    - events.day_month
+    fill_fields:
+    - events.day_month
     filters:
-      accounts.industry: "-NULL"
-    sorts:
-    - accounts.count desc
-    limit: 10
+      events.day_month: 13 months
+    limit: 500
     query_timezone: America/Los_Angeles
     stacking: ''
-    show_value_labels: false
+    show_value_labels: true
     label_density: 25
     legend_position: center
     x_axis_gridlines: false
     y_axis_gridlines: true
     show_view_names: false
     point_style: none
-    series_colors:
-      accounts.count: "#90c8ae"
+    series_types: {}
     limit_displayed_rows: false
     y_axes:
-    - label: ''
+    - label: Users
       orientation: left
       series:
-      - id: accounts.count
-        name: Account Count
-        axisId: accounts.count
-      showLabels: false
+      - id: events.active_user
+        name: Active User
+        axisId: events.active_user
+      showLabels: true
       showValues: true
       unpinAxis: false
       tickDensity: default
@@ -701,261 +919,24 @@
     y_axis_tick_density: default
     y_axis_tick_density_custom: 5
     show_x_axis_label: true
-    x_axis_label: ''
+    x_axis_label: Month
     show_x_axis_ticks: true
     x_axis_scale: auto
     y_axis_scale_mode: linear
     x_axis_reversed: false
     y_axis_reversed: false
     plot_size_by_field: false
+    x_axis_label_rotation: 270
     ordering: none
     show_null_labels: false
     show_totals_labels: false
     show_silhouette: false
     totals_color: "#808080"
-    listen:
-      Customer Success Manager: accounts.customersuccessmanager
-    row: 50
-    col: 0
-    width: 24
-    height: 7
-  - title: Visitor Operating Systems Used
-    name: Visitor Operating Systems Used
-    model: pendo_usage
-    explore: visitors
-    type: looker_column
-    fields:
-    - visitors.lastoperatingsystem
-    - visitors.count
-    sorts:
-    - visitors.count desc
-    limit: 500
-    query_timezone: America/Los_Angeles
-    stacking: ''
-    show_value_labels: false
-    label_density: 25
-    legend_position: center
-    x_axis_gridlines: false
-    y_axis_gridlines: true
-    show_view_names: true
-    point_style: none
-    series_colors:
-      visitors.count: "#90c8ae"
-    limit_displayed_rows: false
-    y_axis_combined: true
-    show_y_axis_labels: true
-    show_y_axis_ticks: true
-    y_axis_tick_density: default
-    y_axis_tick_density_custom: 5
-    show_x_axis_label: true
-    show_x_axis_ticks: true
-    x_axis_scale: auto
-    y_axis_scale_mode: linear
-    x_axis_reversed: false
-    y_axis_reversed: false
-    plot_size_by_field: false
-    ordering: none
-    show_null_labels: false
-    show_totals_labels: false
-    show_silhouette: false
-    totals_color: "#808080"
-    listen:
-      Customer Success Manager: accounts.customersuccessmanager
-    row: 57
+    listen: {}
+    row: 14
     col: 0
     width: 8
-    height: 6
-  - title: Visitor Web Browser Used
-    name: Visitor Web Browser Used
-    model: pendo_usage
-    explore: visitors
-    type: looker_column
-    fields:
-    - visitors.count
-    - visitors.lastbrowsername
-    sorts:
-    - visitors.count desc
-    limit: 500
-    query_timezone: America/Los_Angeles
-    stacking: ''
-    show_value_labels: false
-    label_density: 25
-    legend_position: center
-    x_axis_gridlines: false
-    y_axis_gridlines: true
-    show_view_names: true
-    point_style: none
-    series_colors:
-      visitors.count: "#90c8ae"
-    limit_displayed_rows: false
-    y_axis_combined: true
-    show_y_axis_labels: true
-    show_y_axis_ticks: true
-    y_axis_tick_density: default
-    y_axis_tick_density_custom: 5
-    show_x_axis_label: true
-    show_x_axis_ticks: true
-    x_axis_scale: auto
-    y_axis_scale_mode: linear
-    x_axis_reversed: false
-    y_axis_reversed: false
-    plot_size_by_field: false
-    ordering: none
-    show_null_labels: false
-    show_totals_labels: false
-    show_silhouette: false
-    totals_color: "#808080"
-    listen:
-      Customer Success Manager: accounts.customersuccessmanager
-    row: 57
-    col: 8
-    width: 8
-    height: 6
-  - title: Top 10 Pages
-    name: Top 10 Pages
-    model: pendo_usage
-    explore: pageevents
-    type: looker_bar
-    fields:
-    - allpages.name
-    - pageevents.count
-    filters:
-      allpages.name: "-Dashboard Home"
-    sorts:
-    - pageevents.count desc
-    limit: 10
-    query_timezone: America/Los_Angeles
-    stacking: ''
-    show_value_labels: false
-    label_density: 25
-    legend_position: center
-    x_axis_gridlines: false
-    y_axis_gridlines: true
-    show_view_names: false
-    point_style: none
-    series_colors:
-      pageevents.count: "#d0d0d0"
-    series_labels:
-      pageevents.count: Page Event Count - Excludes Dashboard Home Page
-    series_types: {}
-    limit_displayed_rows: false
-    y_axis_combined: true
-    show_y_axis_labels: true
-    show_y_axis_ticks: true
-    y_axis_tick_density: default
-    y_axis_tick_density_custom: 5
-    show_x_axis_label: true
-    show_x_axis_ticks: true
-    x_axis_scale: auto
-    y_axis_scale_mode: linear
-    x_axis_reversed: false
-    y_axis_reversed: false
-    plot_size_by_field: false
-    ordering: none
-    show_null_labels: false
-    show_totals_labels: false
-    show_silhouette: false
-    totals_color: "#808080"
-    listen:
-      Customer Success Manager: accounts.customersuccessmanager
-    row: 20
-    col: 0
-    width: 24
     height: 8
-  - title: Most Active Visitors by Page Visits
-    name: Most Active Visitors by Page Visits
-    model: pendo_usage
-    explore: pageevents
-    type: looker_bar
-    fields:
-    - pageevents.visitor_id
-    - pageevents.count
-    sorts:
-    - pageevents.count desc
-    limit: 10
-    query_timezone: America/Los_Angeles
-    stacking: ''
-    show_value_labels: false
-    label_density: 25
-    legend_position: center
-    x_axis_gridlines: false
-    y_axis_gridlines: true
-    show_view_names: false
-    point_style: none
-    series_colors:
-      pageevents.count: "#d0d0d0"
-    series_types: {}
-    limit_displayed_rows: false
-    y_axis_combined: true
-    show_y_axis_labels: true
-    show_y_axis_ticks: true
-    y_axis_tick_density: default
-    y_axis_tick_density_custom: 5
-    show_x_axis_label: true
-    show_x_axis_ticks: true
-    x_axis_scale: auto
-    y_axis_scale_mode: linear
-    x_axis_reversed: false
-    y_axis_reversed: false
-    plot_size_by_field: false
-    ordering: none
-    show_null_labels: false
-    show_totals_labels: false
-    show_silhouette: false
-    totals_color: "#808080"
-    listen:
-      Customer Success Manager: accounts.customersuccessmanager
-    row: 28
-    col: 0
-    width: 12
-    height: 7
-  - title: Most Active Account by Page Visits
-    name: Most Active Account by Page Visits
-    model: pendo_usage
-    explore: pageevents
-    type: looker_bar
-    fields:
-    - pageevents.account_id
-    - pageevents.count
-    sorts:
-    - pageevents.count desc
-    limit: 10
-    query_timezone: America/Los_Angeles
-    stacking: ''
-    show_value_labels: false
-    label_density: 25
-    legend_position: center
-    x_axis_gridlines: false
-    y_axis_gridlines: true
-    show_view_names: false
-    point_style: none
-    series_colors:
-      pageevents.count: "#d0d0d0"
-    series_types: {}
-    limit_displayed_rows: false
-    y_axis_combined: true
-    show_y_axis_labels: true
-    show_y_axis_ticks: true
-    y_axis_tick_density: default
-    y_axis_tick_density_custom: 5
-    show_x_axis_label: true
-    show_x_axis_ticks: true
-    x_axis_scale: auto
-    y_axis_scale_mode: linear
-    x_axis_reversed: false
-    y_axis_reversed: false
-    plot_size_by_field: false
-    ordering: none
-    show_null_labels: false
-    show_totals_labels: false
-    show_silhouette: false
-    totals_color: "#808080"
-    listen:
-      Customer Success Manager: accounts.customersuccessmanager
-    row: 28
-    col: 13
-    width: 11
-    height: 7
   filters:
   - name: Customer Success Manager
     title: Customer Success Manager
