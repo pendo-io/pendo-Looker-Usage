@@ -14,6 +14,13 @@ persist_with: pendo_usage_default_datagroup
 
 explore: events {
   label: "Events"
+
+  join: pendo_activeuser_view {
+    view_label: "Pendo Active User View"
+    relationship: many_to_one
+    sql_on: ${events.accountid}=${pendo_activeuser_view.accountid} and ${events.visitorid}=${pendo_activeuser_view.visitorid} and ${events.day_month}=${pendo_activeuser_view.mth_month} ;;
+  }
+
 }
 
 explore: accounts {
