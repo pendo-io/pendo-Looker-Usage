@@ -29,7 +29,7 @@ view: pendo_activeuser_view {
   dimension_group: mth {
     label: "Month"
     type: time
-    timeframes: [month]
+
     datatype: date
     convert_tz: no
     sql: ${TABLE}.Mth ;;
