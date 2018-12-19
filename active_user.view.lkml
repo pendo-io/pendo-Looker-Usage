@@ -3,7 +3,7 @@ view: pendo_activeuser_view {
     sql:
                   SELECT    ACCOUNTID,
                             VISITORID,
-                            count(1) as logins
+                            count(1) as LOGINS
                   from      PENDO.EVENTS a
                   group by  1,2,3
  ;;
