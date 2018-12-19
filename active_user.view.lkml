@@ -12,7 +12,7 @@ view: pendo_activeuser_view {
   dimension: pk {
     hidden: yes
     primary_key: yes
-    sql: CONCAT(${TABLE}.accountid,${TABLE}.visitorid,cast(${TABLE}.Mth as string)) ;;
+    sql: CONCAT(${TABLE}.accountid,${TABLE}.visitorid as string)) ;;
   }
 
   dimension: accountid {
@@ -33,7 +33,7 @@ view: pendo_activeuser_view {
         sql:  ${TABLE}.logins >= 13 ;;
         label: "Daily"}
       when: {
-        sql:  ${TABLE}.logins < 13 and ${TABLE}.logins>=5 ;;
+        sql:  ${TABLE}.logins < 13 and ${TABLE}.logins >= 5 ;;
         label: "Weekly"}
       when: {
         sql:  ${TABLE}.logins < 5 ;;
