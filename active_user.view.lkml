@@ -3,7 +3,6 @@ view: pendo_activeuser_view {
     sql:
                   SELECT    ACCOUNTID,
                             VISITORID,
-                            DATE_PART(MM,"DAY") as Mth,
                             count(1) as logins
                   from      PENDO.EVENTS a
                   group by  1,2,3
@@ -24,15 +23,6 @@ view: pendo_activeuser_view {
   dimension: visitorid {
     label: "Visitor ID"
     sql: ${TABLE}.visitorid ;;
-  }
-
-  dimension_group: mth {
-    label: "Month"
-    type: time
-
-    datatype: date
-    convert_tz: no
-    sql: ${TABLE}.Mth ;;
   }
 
   dimension: frequency {
