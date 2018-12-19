@@ -5,7 +5,7 @@ view: pendo_activeuser_view {
                             VISITORID,
                             count(1) as LOGINS
                   from      PENDO.EVENTS a
-                  group by  1,2,3
+
  ;;
   }
 
