@@ -3,7 +3,7 @@ view: pendo_activeuser_view {
     sql:
                   SELECT    ACCOUNTID,
                             VISITORID,
-                            DATE_TRUNC(DAY,MONTHS) as Mth,
+                            DATE_PART(MM,"DAY") as Mth,
                             count(1) as logins
                   from      PENDO.EVENTS a
                   group by  1,2,3
