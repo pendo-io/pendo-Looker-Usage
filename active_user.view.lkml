@@ -3,7 +3,7 @@ view: pendo_activeuser_view {
     sql:
                   SELECT    ACCOUNTID,
                             VISITORID,
-                            DATE_TRUNC(TO_DATE(DAY),MONTHS) as Mth,
+                            DATE_TRUNC(TO_DATE(DAY),MM) as MTH,
                             count(1) as LOGINS
                   from      PENDO.EVENTS a
                   group by  1,2,3
@@ -13,7 +13,7 @@ view: pendo_activeuser_view {
   dimension: pk {
     hidden: yes
     primary_key: yes
-    sql: CONCAT(${TABLE}.accountid,${TABLE}.visitorid,cast(${TABLE}.Mth as string)) ;;
+    sql: CONCAT(${TABLE}.accountid,${TABLE}.visitorid,cast(${TABLE}.mth as string)) ;;
   }
 
   dimension: accountid {
@@ -32,7 +32,7 @@ view: pendo_activeuser_view {
     timeframes: [month]
     datatype: date
     convert_tz: no
-    sql: ${TABLE}.Mth ;;
+    sql: ${TABLE}.mth ;;
   }
 
   dimension: frequency {
