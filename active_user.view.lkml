@@ -13,7 +13,7 @@ view: pendo_activeuser_view {
   dimension: pk {
     hidden: yes
     primary_key: yes
-    sql: CONCAT(${TABLE}.accountid,${TABLE}.visitorid,cast(${TABLE}.mth as string)) ;;
+    sql: CONCAT(${TABLE}.accountid,${TABLE}.visitorid as string)) ;;
   }
 
   dimension: accountid {
