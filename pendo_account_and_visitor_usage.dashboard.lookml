@@ -474,3 +474,120 @@
     col: 16
     width: 8
     height: 8
+  - title: Account Frequency - Last 14 Months
+    name: Account Frequency - Last 14 Months
+    model: pendo_usage
+    explore: events
+    type: looker_column
+    fields:
+    - events.day_month
+    - pendo_activeaccount_view.frequency
+    - pendo_activeaccount_view.account_cnt
+    pivots:
+    - pendo_activeaccount_view.frequency
+    fill_fields:
+    - events.day_month
+    - pendo_activeaccount_view.frequency
+    filters:
+      events.day_month: 14 months
+    sorts:
+    - events.day_month desc
+    - pendo_activeaccount_view.frequency
+    limit: 500
+    query_timezone: America/Los_Angeles
+    stacking: percent
+    show_value_labels: true
+    label_density: 25
+    legend_position: center
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: false
+    point_style: none
+    series_colors:
+      Daily - 0 - pendo_activeaccount_view.account_cnt: "#edb7bf"
+      Weekly - 1 - pendo_activeaccount_view.account_cnt: "#ede05f"
+      Monthly - 2 - pendo_activeaccount_view.account_cnt: "#74bab3"
+    series_types: {}
+    limit_displayed_rows: false
+    y_axis_combined: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    x_axis_label: Month
+    show_x_axis_ticks: true
+    x_axis_scale: auto
+    y_axis_scale_mode: linear
+    x_axis_reversed: false
+    y_axis_reversed: false
+    plot_size_by_field: false
+    x_axis_label_rotation: 270
+    ordering: none
+    show_null_labels: false
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    listen: {}
+    row: 22
+    col: 12
+    width: 12
+    height: 9
+  - title: Visitor Frequency - Last 14 Months
+    name: Visitor Frequency - Last 14 Months
+    model: pendo_usage
+    explore: events
+    type: looker_column
+    fields:
+    - events.day_month
+    - pendo_activeuser_view.frequency
+    - pendo_activeuser_view.user_cnt
+    pivots:
+    - pendo_activeuser_view.frequency
+    fill_fields:
+    - events.day_month
+    - pendo_activeuser_view.frequency
+    filters:
+      events.day_month: 14 months
+    sorts:
+    - pendo_activeuser_view.frequency 0
+    - events.day_month desc
+    limit: 500
+    query_timezone: America/Los_Angeles
+    stacking: percent
+    show_value_labels: true
+    label_density: 25
+    legend_position: center
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: false
+    point_style: none
+    series_colors:
+      Daily - 0 - pendo_activeuser_view.user_cnt: "#edb7bf"
+      Weekly - 1 - pendo_activeuser_view.user_cnt: "#ede05f"
+      Monthly - 2 - pendo_activeuser_view.user_cnt: "#74bab3"
+    limit_displayed_rows: false
+    y_axis_combined: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    x_axis_label: Month
+    show_x_axis_ticks: true
+    x_axis_scale: auto
+    y_axis_scale_mode: linear
+    x_axis_reversed: false
+    y_axis_reversed: false
+    plot_size_by_field: false
+    x_axis_label_rotation: 270
+    ordering: none
+    show_null_labels: false
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    listen: {}
+    row: 22
+    col: 0
+    width: 12
+    height: 9
