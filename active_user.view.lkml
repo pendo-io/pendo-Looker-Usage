@@ -10,12 +10,6 @@ view: pendo_activeuser_view {
  ;;
   }
 
-  dimension: pk {
-    hidden: yes
-    primary_key: yes
-    sql: CONCAT(${TABLE}.accountid,${TABLE}.visitorid as string)) ;;
-  }
-
   dimension: accountid {
     label: "Account ID"
     sql: ${TABLE}.accountid ;;
