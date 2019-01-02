@@ -2,48 +2,6 @@
   title: Pendo Account and Visitor Usage
   layout: newspaper
   elements:
-  - title: Monthly Active Users (Visitors)
-    name: Monthly Active Users (Visitors)
-    model: pendo_usage
-    explore: events
-    type: single_value
-    fields:
-    - events.day_month
-    - events.active_user
-    fill_fields:
-    - events.day_month
-    filters:
-      events.day_month: 1 months
-    sorts:
-    - events.day_month desc
-    limit: 500
-    query_timezone: America/Los_Angeles
-    series_types: {}
-    row: 0
-    col: 0
-    width: 12
-    height: 6
-  - title: Monthly Active Accounts
-    name: Monthly Active Accounts
-    model: pendo_usage
-    explore: events
-    type: single_value
-    fields:
-    - events.day_month
-    - events.active_account
-    fill_fields:
-    - events.day_month
-    filters:
-      events.day_month: 1 months
-    sorts:
-    - events.day_month desc
-    limit: 500
-    query_timezone: America/Los_Angeles
-    series_types: {}
-    row: 0
-    col: 12
-    width: 12
-    height: 6
   - title: New MAUs - Last 14 Months
     name: New MAUs - Last 14 Months
     model: pendo_usage
@@ -106,6 +64,80 @@
     listen: {}
     row: 6
     col: 0
+    width: 8
+    height: 8
+  - title: Churned MAUs - Last 12 Months - 3 Month Offset
+    name: Churned MAUs - Last 12 Months - 3 Month Offset
+    model: pendo_usage
+    explore: events
+    type: looker_column
+    fields:
+    - events.churned_mau
+    - events.day_month
+    filters:
+      events.churned_mau: NOT NULL
+      events.day_month: 15 months
+    sorts:
+    - events.day_month desc
+    limit: 500
+    dynamic_fields:
+    - table_calculation: month
+      label: Month
+      expression: offset(${events.day_month},-3)
+      value_format:
+      value_format_name:
+      _kind_hint: dimension
+      _type_hint: date
+    query_timezone: America/Los_Angeles
+    stacking: ''
+    show_value_labels: true
+    label_density: 25
+    legend_position: center
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: false
+    point_style: none
+    series_colors:
+      events.churned_mau: "#edb7bf"
+    series_types: {}
+    limit_displayed_rows: false
+    y_axes:
+    - label: Churned Monthly Active Users (MAUs)
+      orientation: left
+      series:
+      - id: events.churned_mau
+        name: Churned MAU
+        axisId: events.churned_mau
+      showLabels: true
+      showValues: true
+      unpinAxis: false
+      tickDensity: default
+      tickDensityCustom: 5
+      type: linear
+    y_axis_combined: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    x_axis_label: Month
+    show_x_axis_ticks: true
+    x_axis_scale: auto
+    y_axis_scale_mode: linear
+    x_axis_reversed: false
+    y_axis_reversed: false
+    plot_size_by_field: false
+    x_axis_label_rotation: 270
+    ordering: none
+    show_null_labels: false
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    hidden_fields:
+    - events.day_month
+    listen: {}
+    row: 6
+    col: 8
     width: 8
     height: 8
   - title: Net MAUs - Last 14 Months
@@ -272,8 +304,217 @@
     col: 8
     width: 8
     height: 8
-  - title: Average Monthly Active Users Per Account - Last 14 Months
-    name: Average Monthly Active Users Per Account - Last 14 Months
+  - title: Monthly Active Users (Visitors)
+    name: Monthly Active Users (Visitors)
+    model: pendo_usage
+    explore: events
+    type: single_value
+    fields:
+    - events.day_month
+    - events.active_user
+    fill_fields:
+    - events.day_month
+    filters:
+      events.day_month: 1 months
+    sorts:
+    - events.day_month desc
+    limit: 500
+    query_timezone: America/Los_Angeles
+    series_types: {}
+    row: 0
+    col: 0
+    width: 12
+    height: 6
+  - title: Monthly Active Accounts
+    name: Monthly Active Accounts
+    model: pendo_usage
+    explore: events
+    type: single_value
+    fields:
+    - events.day_month
+    - events.active_account
+    fill_fields:
+    - events.day_month
+    filters:
+      events.day_month: 1 months
+    sorts:
+    - events.day_month desc
+    limit: 500
+    query_timezone: America/Los_Angeles
+    series_types: {}
+    row: 0
+    col: 12
+    width: 12
+    height: 6
+  - title: Visitor Frequency - Last 14 Months
+    name: Visitor Frequency - Last 14 Months
+    model: pendo_usage
+    explore: events
+    type: looker_column
+    fields:
+    - events.day_month
+    - pendo_activeuser_view.frequency
+    - pendo_activeuser_view.user_cnt
+    pivots:
+    - pendo_activeuser_view.frequency
+    fill_fields:
+    - events.day_month
+    - pendo_activeuser_view.frequency
+    filters:
+      events.day_month: 14 months
+    sorts:
+    - pendo_activeuser_view.frequency 0
+    - events.day_month desc
+    limit: 500
+    query_timezone: America/Los_Angeles
+    stacking: percent
+    show_value_labels: true
+    label_density: 25
+    legend_position: center
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: false
+    point_style: none
+    series_colors:
+      Daily - 0 - pendo_activeuser_view.user_cnt: "#edb7bf"
+      Weekly - 1 - pendo_activeuser_view.user_cnt: "#ede05f"
+      Monthly - 2 - pendo_activeuser_view.user_cnt: "#74bab3"
+    limit_displayed_rows: false
+    y_axis_combined: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    x_axis_label: Month
+    show_x_axis_ticks: true
+    x_axis_scale: auto
+    y_axis_scale_mode: linear
+    x_axis_reversed: false
+    y_axis_reversed: false
+    plot_size_by_field: false
+    x_axis_label_rotation: 270
+    ordering: none
+    show_null_labels: false
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    listen: {}
+    row: 22
+    col: 0
+    width: 12
+    height: 9
+  - title: Account Frequency - Last 14 Months
+    name: Account Frequency - Last 14 Months
+    model: pendo_usage
+    explore: events
+    type: looker_column
+    fields:
+    - events.day_month
+    - pendo_activeaccount_view.frequency
+    - pendo_activeaccount_view.account_cnt
+    pivots:
+    - pendo_activeaccount_view.frequency
+    fill_fields:
+    - events.day_month
+    - pendo_activeaccount_view.frequency
+    filters:
+      events.day_month: 14 months
+    sorts:
+    - events.day_month desc
+    - pendo_activeaccount_view.frequency
+    limit: 500
+    query_timezone: America/Los_Angeles
+    stacking: percent
+    show_value_labels: true
+    label_density: 25
+    legend_position: center
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: false
+    point_style: none
+    series_colors:
+      Daily - 0 - pendo_activeaccount_view.account_cnt: "#edb7bf"
+      Weekly - 1 - pendo_activeaccount_view.account_cnt: "#ede05f"
+      Monthly - 2 - pendo_activeaccount_view.account_cnt: "#74bab3"
+    series_types: {}
+    limit_displayed_rows: false
+    y_axis_combined: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    x_axis_label: Month
+    show_x_axis_ticks: true
+    x_axis_scale: auto
+    y_axis_scale_mode: linear
+    x_axis_reversed: false
+    y_axis_reversed: false
+    plot_size_by_field: false
+    x_axis_label_rotation: 270
+    ordering: none
+    show_null_labels: false
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    listen: {}
+    row: 22
+    col: 12
+    width: 12
+    height: 9
+  - title: Total MAUs - Last 14 Months
+    name: Total MAUs - Last 14 Months
+    model: pendo_usage
+    explore: events
+    type: looker_column
+    fields:
+    - events.day_month
+    - events.active_user
+    fill_fields:
+    - events.day_month
+    filters:
+      events.day_month: 14 months
+    sorts:
+    - events.day_month desc
+    limit: 500
+    query_timezone: America/Los_Angeles
+    stacking: ''
+    show_value_labels: true
+    label_density: 25
+    legend_position: center
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: false
+    point_style: none
+    series_types: {}
+    limit_displayed_rows: false
+    y_axis_combined: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    x_axis_label: Month
+    show_x_axis_ticks: true
+    x_axis_scale: auto
+    y_axis_scale_mode: linear
+    x_axis_reversed: false
+    y_axis_reversed: false
+    plot_size_by_field: false
+    x_axis_label_rotation: 270
+    ordering: none
+    show_null_labels: false
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    listen: {}
+    row: 14
+    col: 0
+    width: 8
+    height: 8
+  - title: Average MAUs Per Account - Last 14 Months
+    name: Average MAUs Per Account - Last 14 Months
     model: pendo_usage
     explore: events
     type: looker_column
@@ -345,260 +586,5 @@
     listen: {}
     row: 14
     col: 16
-    width: 8
-    height: 8
-  - title: Account Frequency - Last 14 Months
-    name: Account Frequency - Last 14 Months
-    model: pendo_usage
-    explore: events
-    type: looker_column
-    fields:
-    - events.day_month
-    - pendo_activeaccount_view.frequency
-    - pendo_activeaccount_view.account_cnt
-    pivots:
-    - pendo_activeaccount_view.frequency
-    fill_fields:
-    - events.day_month
-    - pendo_activeaccount_view.frequency
-    filters:
-      events.day_month: 14 months
-    sorts:
-    - events.day_month desc
-    - pendo_activeaccount_view.frequency
-    limit: 500
-    query_timezone: America/Los_Angeles
-    stacking: percent
-    show_value_labels: true
-    label_density: 25
-    legend_position: center
-    x_axis_gridlines: false
-    y_axis_gridlines: true
-    show_view_names: false
-    point_style: none
-    series_colors:
-      Daily - 0 - pendo_activeaccount_view.account_cnt: "#edb7bf"
-      Weekly - 1 - pendo_activeaccount_view.account_cnt: "#ede05f"
-      Monthly - 2 - pendo_activeaccount_view.account_cnt: "#74bab3"
-    series_types: {}
-    limit_displayed_rows: false
-    y_axis_combined: true
-    show_y_axis_labels: true
-    show_y_axis_ticks: true
-    y_axis_tick_density: default
-    y_axis_tick_density_custom: 5
-    show_x_axis_label: true
-    x_axis_label: Month
-    show_x_axis_ticks: true
-    x_axis_scale: auto
-    y_axis_scale_mode: linear
-    x_axis_reversed: false
-    y_axis_reversed: false
-    plot_size_by_field: false
-    x_axis_label_rotation: 270
-    ordering: none
-    show_null_labels: false
-    show_totals_labels: false
-    show_silhouette: false
-    totals_color: "#808080"
-    listen: {}
-    row: 22
-    col: 12
-    width: 12
-    height: 9
-  - title: Visitor Frequency - Last 14 Months
-    name: Visitor Frequency - Last 14 Months
-    model: pendo_usage
-    explore: events
-    type: looker_column
-    fields:
-    - events.day_month
-    - pendo_activeuser_view.frequency
-    - pendo_activeuser_view.user_cnt
-    pivots:
-    - pendo_activeuser_view.frequency
-    fill_fields:
-    - events.day_month
-    - pendo_activeuser_view.frequency
-    filters:
-      events.day_month: 14 months
-    sorts:
-    - pendo_activeuser_view.frequency 0
-    - events.day_month desc
-    limit: 500
-    query_timezone: America/Los_Angeles
-    stacking: percent
-    show_value_labels: true
-    label_density: 25
-    legend_position: center
-    x_axis_gridlines: false
-    y_axis_gridlines: true
-    show_view_names: false
-    point_style: none
-    series_colors:
-      Daily - 0 - pendo_activeuser_view.user_cnt: "#edb7bf"
-      Weekly - 1 - pendo_activeuser_view.user_cnt: "#ede05f"
-      Monthly - 2 - pendo_activeuser_view.user_cnt: "#74bab3"
-    limit_displayed_rows: false
-    y_axis_combined: true
-    show_y_axis_labels: true
-    show_y_axis_ticks: true
-    y_axis_tick_density: default
-    y_axis_tick_density_custom: 5
-    show_x_axis_label: true
-    x_axis_label: Month
-    show_x_axis_ticks: true
-    x_axis_scale: auto
-    y_axis_scale_mode: linear
-    x_axis_reversed: false
-    y_axis_reversed: false
-    plot_size_by_field: false
-    x_axis_label_rotation: 270
-    ordering: none
-    show_null_labels: false
-    show_totals_labels: false
-    show_silhouette: false
-    totals_color: "#808080"
-    listen: {}
-    row: 22
-    col: 0
-    width: 12
-    height: 9
-  - title: Bounced MAUs - Last 14 Months
-    name: Bounced MAUs - Last 14 Months
-    model: pendo_usage
-    explore: events
-    type: looker_column
-    fields:
-    - events.active_user
-    - events.day_month
-    fill_fields:
-    - events.day_month
-    filters:
-      events.day_month: 14 months
-    sorts:
-    - events.day_month desc
-    limit: 500
-    filter_expression: "${events.firstvisit_user_date}=${events.lastvisit_user_date}"
-    query_timezone: America/Los_Angeles
-    stacking: ''
-    show_value_labels: true
-    label_density: 25
-    legend_position: center
-    x_axis_gridlines: false
-    y_axis_gridlines: true
-    show_view_names: false
-    point_style: none
-    series_types: {}
-    limit_displayed_rows: false
-    y_axes:
-    - label: Users
-      orientation: left
-      series:
-      - id: events.active_user
-        name: Active User
-        axisId: events.active_user
-      showLabels: true
-      showValues: true
-      unpinAxis: false
-      tickDensity: default
-      tickDensityCustom: 5
-      type: linear
-    y_axis_combined: true
-    show_y_axis_labels: true
-    show_y_axis_ticks: true
-    y_axis_tick_density: default
-    y_axis_tick_density_custom: 5
-    show_x_axis_label: true
-    x_axis_label: Month
-    show_x_axis_ticks: true
-    x_axis_scale: auto
-    y_axis_scale_mode: linear
-    x_axis_reversed: false
-    y_axis_reversed: false
-    plot_size_by_field: false
-    x_axis_label_rotation: 270
-    ordering: none
-    show_null_labels: false
-    show_totals_labels: false
-    show_silhouette: false
-    totals_color: "#808080"
-    listen: {}
-    row: 14
-    col: 0
-    width: 8
-    height: 8
-  - title: Churned MAUs - Last 12 Months - 3 Month Offset
-    name: Churned MAUs - Last 12 Months - 3 Month Offset
-    model: pendo_usage
-    explore: events
-    type: looker_column
-    fields:
-    - events.churned_mau
-    - events.day_month
-    filters:
-      events.churned_mau: NOT NULL
-      events.day_month: 15 months
-    sorts:
-    - events.day_month desc
-    limit: 500
-    dynamic_fields:
-    - table_calculation: month
-      label: Month
-      expression: offset(${events.day_month},-3)
-      value_format:
-      value_format_name:
-      _kind_hint: dimension
-      _type_hint: date
-    query_timezone: America/Los_Angeles
-    stacking: ''
-    show_value_labels: true
-    label_density: 25
-    legend_position: center
-    x_axis_gridlines: false
-    y_axis_gridlines: true
-    show_view_names: false
-    point_style: none
-    series_colors:
-      events.churned_mau: "#edb7bf"
-    series_types: {}
-    limit_displayed_rows: false
-    y_axes:
-    - label: Churned Monthly Active Users (MAUs)
-      orientation: left
-      series:
-      - id: events.churned_mau
-        name: Churned MAU
-        axisId: events.churned_mau
-      showLabels: true
-      showValues: true
-      unpinAxis: false
-      tickDensity: default
-      tickDensityCustom: 5
-      type: linear
-    y_axis_combined: true
-    show_y_axis_labels: true
-    show_y_axis_ticks: true
-    y_axis_tick_density: default
-    y_axis_tick_density_custom: 5
-    show_x_axis_label: true
-    x_axis_label: Month
-    show_x_axis_ticks: true
-    x_axis_scale: auto
-    y_axis_scale_mode: linear
-    x_axis_reversed: false
-    y_axis_reversed: false
-    plot_size_by_field: false
-    x_axis_label_rotation: 270
-    ordering: none
-    show_null_labels: false
-    show_totals_labels: false
-    show_silhouette: false
-    totals_color: "#808080"
-    hidden_fields:
-    - events.day_month
-    listen: {}
-    row: 6
-    col: 8
     width: 8
     height: 8
